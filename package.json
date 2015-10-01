@@ -1,0 +1,22 @@
+{
+  "name": "atelier-parisweb-2015",
+  "version": "1.0.0",
+  "description": "Démo de l’atelier Paris Web 2015 sur ES6",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdd/parisweb-2015-workshop.git"
+  },
+  "keywords": [
+    "workshop",
+    "atelier",
+    "parisweb",
+    "es6"
+  ],
+  "author": "Christophe Porteneuve <christophe@delicious-insights.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdd/parisweb-2015-workshop/issues"
+  },
+  "homepage": "https://github.com/tdd/parisweb-2015-workshop#readme"
+}
