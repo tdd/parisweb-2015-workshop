@@ -85,76 +85,257 @@ var christophe = {
 				</section>
 
         <section data-state="theme-color-silver-green">
-					<section>
-						<h1>FIXME</h1>
-            <h3>FIXME</h3>
+					<section id="now-really">
+						<h1>Maintenant ?!</h1>
+            <h3>Mais je suis sur IE9, moi…</h3>
 					</section>
 
-          <section>
-            <h2>FIXME</h2>
-            <h4>FIXME</h4>
+          <section id="yes-now-really">
+            <h2>Oui, mais c’est pas grave</h2>
 
-            <p>FIXME</p>
+            <p>Parce que</p>
+
+            <a href="http://babeljs.io/"><img src="images/babel-logo.svg" alt="Logo de Babel" width="80%"></a>
           </section>
-				</section> <!-- #fixme -->
+
+          <section id="babel">
+            <h2>Babel (né 6to5)</h2>
+
+            <p>Transpile ES6+<sup>1</sup> (ES6, ES7…) en <strong>ES5</strong></p>
+            <p>Du coup, si tu as ES5, tu peux y aller</p>
+            <p>En pratique : IE9+, tous navigateurs modernes, Node.js</p>
+            <p>Intégré avec <a href="http://babeljs.io/docs/setup/"><strong>l’univers</strong></a></p>
+
+            <footer><sup>1</sup> Quasi tout… mais pas complètement tout.</footer>
+          </section>
+
+          <section id="why-es6">
+            <h2>ES6, pourquoi ?</h2>
+
+            <p>Plus <strong>facile</strong></p>
+            <p>Plus <strong>puissant</strong></p>
+            <p>Plus <strong>fiable</strong></p>
+            <p>Plus <strong>performant</strong></p>
+            <h3 class="fragment breathing">Plus <strong>kiffant</strong></h3>
+          </section>
+
+          <section id="agenda">
+            <h2>Aujourd’hui…</h2>
+            <h4>on va regarder ES6 dans son habitat naturel</h4>
+
+            <p>Parce que juste sortir des exemples Toto / Tutu, ça empêche de vraiment intérioriser le potentiel du bestiau.</p>
+
+            <p>Véritable codebase : <a href="https://github.com/rackt/redux/tree/master/examples/todomvc">l’exemple TodoMVC de Redux</a></p>
+
+            <p>Quelques démos isolées lorsqu’on n’avait pas d’exemple adapté dans cette codebase.</p>
+
+            <p>On ne verra pas <strong>tout</strong> : certains trucs sont anecdotiques ou très, très expérimentaux.  Mais ça devrait bien couvrir le truc.</p>
+          </section>
+				</section> <!-- #now-really -->
 
         <section data-state="theme-color-blue-yellow">
-          <section>
-            <h1>FIXME</h1>
-            <h3>FIXME</h3>
+          <section id="objects-and-classes">
+            <h1>Objets &amp; Classes</h1>
+            <h3>Là c’est grave plus simple</h3>
           </section>
 
-          <section>
-            <h2>FIXME</h2>
-            <h4>FIXME</h4>
+          <section id="object-literals">
+            <h2>Litéraux objets</h2>
 
             <p>FIXME</p>
+            <!--
+            -> actions/todos.js
+            -> components/Footer.js#L5-L9
+             -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#enhanced-object-literals">Détails</a></footer>
           </section>
-        </section> <!-- #fixme -->
+
+          <section id="classes">
+            <h2>Classes</h2>
+
+            <p>FIXME</p>
+            <!-- components/TodoItem.js (class, extends, méthodes, constructor, super) -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#classes">Détails</a></footer>
+          </section>
+        </section> <!-- #objects-and-classes -->
 
 				<section data-state="theme-color-forest-yellow">
-          <section>
-            <h1>FIXME</h1>
-            <h3>FIXME</h3>
+          <section id="greater-comfort">
+            <h1>Un confort énorme</h1>
+            <h3>sur plein de petits trucs</h3>
           </section>
 
-          <section>
-            <h2>FIXME</h2>
-            <h4>FIXME</h4>
+          <section id="destructuring">
+            <h2>Déstructuration</h2>
 
             <p>FIXME</p>
+            <!--
+            -> components/Footer.js#L13
+            -> components/Footer.js#L25
+            -> test/components/Footer.spec.js#80, #88, #94, #101 (tableaux)
+            -> Démos nested
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#destructuring">Détails</a></footer>
           </section>
-        </section> <!-- #fixme -->
+
+          <section id="rest-spread">
+            <h2>Rest &amp; Spread</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> reducers/todos.js#L12-L16
+            -> https://github.com/sebmarkbage/ecmascript-rest-spread#readme
+            -> components/MainSection.js#L72
+            -->
+            <footer>
+              Détails <a href="http://babeljs.io/docs/learn-es2015/#default-rest-spread">ES6</a>
+              et <a href="https://github.com/sebmarkbage/ecmascript-rest-spread#readme">ES7</a>
+            </footer>
+          </section>
+
+          <section id="defaults">
+            <h2>Valeurs par défaut</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> reducers/todo.js#L9 (args)
+            -> Démos destructuring (incl. array)
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#default-rest-spread">Détails</a></footer>
+          </section>
+
+          <section id="template-strings">
+            <h2>Template strings</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> Démo simple
+            -> Démo multi-lignes
+            -> Démo tagged (ex. échappement HTML)
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#template-strings">Détails</a></footer>
+          </section>
+
+          <section id="arrow-functions">
+            <h2>Fonctions fléchées &amp; <code>this</code> lexical</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> components/TodoItem.js#L34
+            -> components/MainSection.js#L6-L10
+            -> components/MainSection.js#L19
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#arrows-and-lexical-this">Détails</a></footer>
+          </section>
+
+          <section id="let-const">
+            <h2><code>let</code> &amp; <code>const</code></h2>
+
+            <p>FIXME</p>
+            <!--
+            -> components/Footer.js (const en déstructuration d’objet)
+            -> constants/ActionTypes.js
+            -> Démo let dans une boucle for sur un asynchrone
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#let-const">Détails</a></footer>
+          </section>
+
+          <section id="octal-and-binary">
+            <h2>Litéraux octaux &amp; binaires</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> Juste slides
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#binary-and-octal-literals">Détails</a></footer>
+          </section>
+        </section> <!-- #greater-comfort -->
 
         <section data-state="theme-color-asphalt-orange">
-          <section>
-            <h1>FIXME</h1>
-            <h3>FIXME</h3>
+          <section id="modules">
+            <h1>Des vrais modules</h1>
+            <h3>qui défoncent</h3>
           </section>
 
-          <section>
-            <h2>FIXME</h2>
-            <h4>FIXME</h4>
+          <section id="better-modules">
+            <h2>Mieux que tous les autres</h2>
 
             <p>FIXME</p>
+            <!--
+            -> actions/todo.js (import * as, export de déclaration [fx] à la volée)
+            -> components/Footer.js (types mixtes d'import, export défaut de classe)
+            -> constants/ActionTypes.js (exports de constantes à la volée)
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#modules">Détails</a></footer>
           </section>
-				</section> <!-- #fixme -->
+				</section> <!-- #modules -->
 
         <section data-state="theme-color-mint-beige">
-          <section>
-            <h1>FIXME</h1>
-            <h3>FIXME</h3>
+          <section id="async">
+            <h1>L’asynchrone</h1>
+            <h3>en version triviale</h3>
           </section>
 
-          <section>
-            <h2>FIXME</h2>
-            <h4>FIXME</h4>
+          <section id="promises">
+            <h2>Promesses</h2>
 
             <p>FIXME</p>
+            <!--
+            -> Démos basées http://bevacqua.github.io/promisees/
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#promises">Détails</a></footer>
           </section>
-        </section> <!-- #fixme -->
 
-        <section data-state="theme-color-mint-beige">
+          <section id="async-functions">
+            <h2>Fonctions asynchrones</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> Démo dans un embed Tonic, avec requêtages JSON, etc.
+            -->
+            <footer><a href="https://github.com/tc39/ecmascript-asyncawait#readme">Détails</a></footer>
+          </section>
+        </section> <!-- #async -->
+
+        <section data-state="theme-color-blue-yellow">
+          <section id="experiments">
+            <h1>Encore plus fort</h1>
+            <h3>Avec les proxies et ES7</h3>
+          </section>
+
+          <section id="comprehensions">
+            <h2>Compréhensions</h2>
+
+            <p>FIXME</p>
+            <!--
+            Comparaisons Ruby / CoffeeScript
+            -->
+            <footer><a href="http://babeljs.io/docs/advanced/transformers/other/comprehensions/">Détails</a></footer>
+          </section>
+
+          <section id="decorators">
+            <h2>Décorateurs</h2>
+
+            <p>FIXME</p>
+            <!--
+            Dérouler rapidement https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841
+            -->
+            <footer><a href="https://github.com/wycats/javascript-decorators#readme">Détails</a></footer>
+          </section>
+
+          <section id="proxies">
+            <h2>Proxies</h2>
+
+            <p>FIXME</p>
+            <!--
+            -> http://www.2ality.com/2014/12/es6-proxies.html#use_cases_for_proxies
+             (notamment 3.4 : Warning about unknown props // 3.5 : Negative array indices)
+            -->
+            <footer><a href="http://babeljs.io/docs/learn-es2015/#proxies">Détails</a></footer>
+          </section>
+        </section> <!-- #experiments -->
+
+        <section data-state="theme-color-silver-green">
           <section id="trainings">
             <h2>Envie d’en savoir plus ?</h2>
 
