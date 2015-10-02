@@ -142,19 +142,40 @@ var christophe = {
           <section id="object-literals">
             <h2>Litéraux objets</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> actions/todos.js
-            -> components/Footer.js#L5-L9
-             -->
+            <pre><code class="js" data-trim data-noescape data-path="actions/todo.js (lignes 11–13)">
+function editTodo(id, text) {
+  return { type: types.EDIT_TODO<u>, id, text</u> };
+}
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path="components/Footer.js (lignes 5–9)">
+FILTER_TITLES = {
+  <u>[SHOW_ALL]</u>: 'All',
+  <u>[SHOW_ACTIVE]</u>: 'Active',
+  <u>[SHOW_COMPLETED]</u>: 'Completed'
+};
+            </code></pre>
             <footer><a href="http://babeljs.io/docs/learn-es2015/#enhanced-object-literals">Détails</a></footer>
           </section>
 
           <section id="classes">
             <h2>Classes</h2>
 
-            <p>FIXME</p>
-            <!-- components/TodoItem.js (class, extends, méthodes, constructor, super) -->
+            <pre><code class="js" data-trim data-noescape data-path="components/TodoItem.js (lignes 5–15)">
+<u>class</u> TodoItem <u>extends</u> Component {
+  <u>constructor</u>(props, context) {
+    <u>super</u>(props, context);
+    this.state = {
+      editing: false
+    };
+  }
+
+  <u>handleDoubleClick()</u> {
+    this.setState({ editing: true });
+  }
+  …
+}
+            </code></pre>
             <footer><a href="http://babeljs.io/docs/learn-es2015/#classes">Détails</a></footer>
           </section>
         </section> <!-- #objects-and-classes -->
@@ -168,25 +189,52 @@ var christophe = {
           <section id="destructuring">
             <h2>Déstructuration</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> components/Footer.js#L13
-            -> components/Footer.js#L25
-            -> test/components/Footer.spec.js#80, #88, #94, #101 (tableaux)
-            -> Démos nested
-            -->
+            <pre><code class="js" data-trim data-noescape data-path="components/Footer.js (lignes 13, 25)">
+const <u>{ activeCount } =</u> this.props;
+…
+const { filter<u>: selectedFilter</u>, onShow } = this.props;
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path="test/components/Footer.spec.js (lignes 80, 88)">
+const <u>[, filters] =</u> output.props.children;
+…
+const <u>[,, clear] =</u> output.props.children;
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape>
+var { op: a, lhs<u>: { op: b }</u>, rhs: c } = getASTNode();
+            </code></pre>
             <footer><a href="http://babeljs.io/docs/learn-es2015/#destructuring">Détails</a></footer>
           </section>
 
           <section id="rest-spread">
             <h2>Rest &amp; Spread</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> reducers/todos.js#L12-L16
-            -> https://github.com/sebmarkbage/ecmascript-rest-spread#readme
-            -> components/MainSection.js#L72
-            -->
+            <pre><code class="js" data-trim data-noescape>
+function winners(first, runnerUp, <u>...others</u>) {
+  console.log(first, runnerUp, others);
+}
+winners('alice', 'bob', 'claire', 'david')
+// => 'alice', 'bob', <u>['claire', 'david']</u>
+
+var arr1 = ['one', 'two'], arr2 = ['three', 'four'];
+arr1.push(<u>...arr2</u>) // => 4
+arr1                // => ['one', 'two', 'three', 'four']
+
+var defaults = { first: 'John', last: 'Doe', age: 42 };
+var trainer  = { last: 'Smith', age: 35 };
+trainer      = { <u>...defaults</u>, <u>...trainer</u>, age: 36 }
+// => { first: 'Robert', last: 'Smith', age: 36 }
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path="reducers/todos.js (lignes 12–16, reformatées)">
+return <u>[</u>{ id: …, completed: …, text: … }<u>, ...state]</u>;
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path="components/MainSection.js (JSX ; ligne 72)">
+&lt;TodoItem key={todo.id} todo={todo} {<u>...actions</u>} /&gt;
+            </code></pre>
+
             <footer>
               Détails <a href="http://babeljs.io/docs/learn-es2015/#default-rest-spread">ES6</a>
               et <a href="https://github.com/sebmarkbage/ecmascript-rest-spread#readme">ES7</a>
@@ -196,57 +244,105 @@ var christophe = {
           <section id="defaults">
             <h2>Valeurs par défaut</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> reducers/todo.js#L9 (args)
-            -> Démos destructuring (incl. array)
-            -->
+            <pre><code class="js" data-trim data-noescape data-path="reducers/todos.js (ligne 9)">
+function todos(state<u> = initialState</u>, action) {
+  …
+}
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape>
+var [first, second<u> = 'foo'</u>] = ['yo'];
+// second === 'foo'
+
+var person = { first: 'Louis', sex: 'M', age: 36 };
+var { first, last<u> = 'Doe'</u>, age<u> = 42</u> } = person;
+// first === 'Louis', last === 'Doe', age === 36
+            </code></pre>
             <footer><a href="http://babeljs.io/docs/learn-es2015/#default-rest-spread">Détails</a></footer>
           </section>
 
           <section id="template-strings">
             <h2>Template strings</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> Démo simple
-            -> Démo multi-lignes
-            -> Démo tagged (ex. échappement HTML)
-            -->
+            <pre><code class="js" data-trim data-noescape>
+var person = { first: 'Thomas', last: 'Anderson', age: 25, nickname: 'Neo' };
+
+// Interpolation de JS quelconque
+console.log(`<u>${person.first}</u> aka <u>${person.nickname}</u>`)
+// => 'Thomas aka Neo'
+
+// Multi-ligne !
+var markup = <u>`</u>&lt;li&gt;
+  ${person.first} ${person.last}, age ${person.age}
+&lt;/li&gt;<u>`</u>;
+
+// Tagged template strings
+function <u>html(statics, ...exprs)</u> {
+  return statics.reduce(function(acc, text, index) {
+    return acc + text + (exprs[index] || '').replace(/&lt;/g, '&amp;lt;');
+  }, '').join('');
+}
+
+var user = '&lt;script&gt;', comment = '&lt;bgsound&gt;';
+<u>html`</u>&lt;li&gt;${user}: &lt;blockquote&gt;${comment}&lt;/blockquote&gt;&lt;/li&gt;<u>`</u>
+// => '&lt;li&gt;<u>&amp;lt;</u>script&gt;: &lt;blockquote&gt;<u>&amp;lt;</u>bgsound&gt;&lt;/blockquote&gt;&lt;/li&gt;'
+            </code></pre>
+
             <footer><a href="http://babeljs.io/docs/learn-es2015/#template-strings">Détails</a></footer>
           </section>
 
           <section id="arrow-functions">
             <h2>Fonctions fléchées &amp; <code>this</code> lexical</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> components/TodoItem.js#L34
-            -> components/MainSection.js#L6-L10
-            -> components/MainSection.js#L19
-            -->
+            <pre><code class="js" data-trim data-noescape data-path="components/TodoItem.js (ligne 34)">
+onSave={<u>(text) => this.handleSave(todo.id, text)</u>} />
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path="components/MainSection.js (lignes 6–10, 19)">
+TODO_FILTERS = {
+  [SHOW_ALL]: <u>() => true</u>,
+  [SHOW_ACTIVE]: <u>todo => !todo.completed</u>,
+  [SHOW_COMPLETED]: <u>todo => todo.completed</u>
+};
+…
+atLeastOneCompleted = this.props.todos.some(<u>todo => todo.completed</u>);
+            </code></pre>
+
             <footer><a href="http://babeljs.io/docs/learn-es2015/#arrows-and-lexical-this">Détails</a></footer>
           </section>
 
           <section id="let-const">
             <h2><code>let</code> &amp; <code>const</code></h2>
 
-            <p>FIXME</p>
-            <!--
-            -> components/Footer.js (const en déstructuration d’objet)
-            -> constants/ActionTypes.js
-            -> Démo let dans une boucle for sur un asynchrone
-            -->
+            <pre><code class="js" data-trim data-noescape data-path="components/Footer.js (lignes 13, 25)">
+<u>const</u> { activeCount } = this.props;
+…
+<u>const</u> { filter: selectedFilter, onShow } = this.props;
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path="constants/ActionTypes.js (lignes 1–3 modifiées)">
+<u>const</u> ADD_TODO = 'ADD_TODO';
+<u>const</u> DELETE_TODO = 'DELETE_TODO';
+<u>const</u> EDIT_TODO = 'EDIT_TODO';
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape>
+for (<u>let</u> index = 0; index &lt; 10; ++index)
+  setTimeout(() => console.log(index), 10);
+// => Effectivement de 0 à 9, pas 10 x 10, malgré l’asynchrone
+            </code></pre>
+
             <footer><a href="http://babeljs.io/docs/learn-es2015/#let-const">Détails</a></footer>
           </section>
 
           <section id="octal-and-binary">
             <h2>Litéraux octaux &amp; binaires</h2>
 
-            <p>FIXME</p>
-            <!--
-            -> Juste slides
-            -->
+            <pre><code class="js" data-trim data-noescape>
+0o52     // => 42
+0b101010 // => 42
+            </code></pre>
+
             <footer><a href="http://babeljs.io/docs/learn-es2015/#binary-and-octal-literals">Détails</a></footer>
           </section>
         </section> <!-- #greater-comfort -->
@@ -260,7 +356,17 @@ var christophe = {
           <section id="better-modules">
             <h2>Mieux que tous les autres</h2>
 
-            <p>FIXME</p>
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
+
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
             <!--
             -> actions/todo.js (import * as, export de déclaration [fx] à la volée)
             -> components/Footer.js (types mixtes d'import, export défaut de classe)
@@ -279,7 +385,9 @@ var christophe = {
           <section id="promises">
             <h2>Promesses</h2>
 
-            <p>FIXME</p>
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
             <!--
             -> Démos basées http://bevacqua.github.io/promisees/
             -->
@@ -289,7 +397,9 @@ var christophe = {
           <section id="async-functions">
             <h2>Fonctions asynchrones</h2>
 
-            <p>FIXME</p>
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
             <!--
             -> Démo dans un embed Tonic, avec requêtages JSON, etc.
             -->
@@ -306,7 +416,9 @@ var christophe = {
           <section id="comprehensions">
             <h2>Compréhensions</h2>
 
-            <p>FIXME</p>
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
             <!--
             Comparaisons Ruby / CoffeeScript
             -->
@@ -316,7 +428,9 @@ var christophe = {
           <section id="decorators">
             <h2>Décorateurs</h2>
 
-            <p>FIXME</p>
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
             <!--
             Dérouler rapidement https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841
             -->
@@ -326,7 +440,9 @@ var christophe = {
           <section id="proxies">
             <h2>Proxies</h2>
 
-            <p>FIXME</p>
+            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+
+            </code></pre>
             <!--
             -> http://www.2ality.com/2014/12/es6-proxies.html#use_cases_for_proxies
              (notamment 3.4 : Warning about unknown props // 3.5 : Negative array indices)

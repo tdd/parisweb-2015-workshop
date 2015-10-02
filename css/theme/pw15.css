@@ -26,8 +26,11 @@
 
 .reveal tt, .reveal code, .reveal pre {
   font-family: "Source Code Pro", Menlo, Monaco, Consolas, monospace;
+  font-size: 0.5em;
   line-height: 1.3em;
 }
+
+.reveal h2 code { font-size: 1em; }
 
 /* SILVER GREEN */
 
@@ -539,6 +542,18 @@ em span[lang], em strong[lang] { font-style: normal; }
 .reveal h2 + h4:not(.breathe) { margin-top: -0.3em; }
 .reveal p code, .reveal li code { color: #4169e1; }
 
+.reveal pre code[data-path]:after {
+  display: block;
+  font-size: 80%;
+  background: white;
+  color: #aaa;
+  content: attr(data-path);
+
+  line-height: 0.9em;
+  padding-top: 0.2em;
+  border-top: 1px solid silver;
+  margin-top: 0.5em;
+}
 .reveal pre {
   width: 100%;
   line-height: 1.3em;
