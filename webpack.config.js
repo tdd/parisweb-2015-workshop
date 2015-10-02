@@ -1,7 +1,7 @@
 var Path = require('path');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: './front/index.js',
   output: {
     path: Path.join(__dirname, 'front', 'dist'),
