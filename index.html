@@ -356,23 +356,32 @@ for (<u>let</u> index = 0; index &lt; 10; ++index)
           <section id="better-modules">
             <h2>Mieux que tous les autres</h2>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+            <pre><code class="js" data-trim data-noescape data-path="actions/todo.js (lignes 1–5)">
+<u>import * as types from '../constants/ActionTypes';</u>
 
+<u>export</u> function addTodo(text) {
+  return { type: types.ADD_TODO, text };
+}
             </code></pre>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
-
+            <pre><code class="js" data-trim data-noescape data-path="components/Footer.js (lignes 1–3, 73)">
+import <u>React, { PropTypes, Component }</u> from <u>'react'</u>;
+import <u>classnames</u> from 'classnames';
+import <u>{ SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE }</u> from '../constants/TodoFilters';
+…
+<u>export default</u> Footer;
             </code></pre>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
-
+            <pre><code class="js" data-trim data-noescape data-path="constants/ActionTypes.js (lignes 1–3)">
+<u>export const</u> ADD_TODO = 'ADD_TODO';
+<u>export const</u> DELETE_TODO = 'DELETE_TODO';
+<u>export const</u> EDIT_TODO = 'EDIT_TODO';
             </code></pre>
-            <!--
-            -> actions/todo.js (import * as, export de déclaration [fx] à la volée)
-            -> components/Footer.js (types mixtes d'import, export défaut de classe)
-            -> constants/ActionTypes.js (exports de constantes à la volée)
-            -->
-            <footer><a href="http://babeljs.io/docs/learn-es2015/#modules">Détails</a></footer>
+
+            <footer>
+              <a href="http://babeljs.io/docs/learn-es2015/#modules">Détails</a> •
+              <a href="http://jsmodules.io">Comparaison CommonJS</a>
+            </footer>
           </section>
 				</section> <!-- #modules -->
 
@@ -385,25 +394,56 @@ for (<u>let</u> index = 0; index &lt; 10; ++index)
           <section id="promises">
             <h2>Promesses</h2>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
-
+            <pre><code class="js" data-trim data-noescape data-path="vu dans https://jakearchibald.com/2014/offline-cookbook/#cache-then-network">
+caches.match('/data.json')<u>.then</u>(function(response) {
+  if (!response) <u>throw</u> Error("No data");
+  <u>return</u> response.json();
+})<u>.then</u>(function(data) {
+  // don't overwrite newer network data
+  if (!networkDataReceived) {
+    updatePage(data);
+  }
+})<u>.catch</u>(function() {
+  // we didn't get cached data, the network is our last hope:
+  <u>return</u> networkUpdate;
+})<u>.catch</u>(showErrorMessage).then(stopSpinner);
             </code></pre>
-            <!--
-            -> Démos basées http://bevacqua.github.io/promisees/
-            -->
-            <footer><a href="http://babeljs.io/docs/learn-es2015/#promises">Détails</a></footer>
+
+            <p>Super manière de les apprivoiser : <a href="http://bevacqua.github.io/promisees/">Promisees</a></p>
+
+            <footer>
+              <a href="http://babeljs.io/docs/learn-es2015/#promises">Détails</a> •
+              <a href="http://www.html5rocks.com/fr/tutorials/es6/promises/">L’excellent tuto FR sur HTML5Rocks</a>
+            </footer>
           </section>
 
           <section id="async-functions">
             <h2>Fonctions asynchrones</h2>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+            <pre><code id="async-fx-demo" class="js" data-trim data-noescape>
+const Promise = require("bluebird");
+const R = require("ramda");
 
+<u>await</u> forecastCities("New York", "San Francisco");
+
+<u>async</u> function forecastCities()
+{
+    var forecast = require("notebook")("tonic/forecast/1.0.0");
+    var promises = R.map(forecast.threeDay, arguments);
+
+    return R.zipObj(arguments, <u>await</u> Promise.map(promises, R.identity));
+}
             </code></pre>
-            <!--
-            -> Démo dans un embed Tonic, avec requêtages JSON, etc.
-            -->
-            <footer><a href="https://github.com/tc39/ecmascript-asyncawait#readme">Détails</a></footer>
+
+            <p>
+              <a href="https://tonicdev.com/tonic/city-forecast">Voir le résultat</a>
+              (et <a href="https://tonicdev.com/capicue/iss/4.0.0">d’autres encore plus fun</a>)
+            </p>
+
+            <footer>
+              <a href="https://github.com/tc39/ecmascript-asyncawait#readme">Détails</a> •
+              <a href="https://jakearchibald.com/2014/es7-async-functions/">Jake Archibald enfonce le clou</a>
+            </footer>
           </section>
         </section> <!-- #async -->
 
@@ -416,38 +456,68 @@ for (<u>let</u> index = 0; index &lt; 10; ++index)
           <section id="comprehensions">
             <h2>Compréhensions</h2>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
-
+            <pre><code class="js" data-trim data-noescape>
+let results = [
+  <u>for (c of customers)
+      if (c.city == "Seattle")
+        { name: c.name, age: c.age }</u>
+];
             </code></pre>
-            <!--
-            Comparaisons Ruby / CoffeeScript
-            -->
+
+            <p>Pour comparaison, en CoffeeScript :</p>
+
+            <pre><code class="coffeescript" data-trim data-noescape>
+results = ({ name: c.name, age: c.age }
+  for c in customers when c.city is "Seattle")
+            </code></pre>
+
             <footer><a href="http://babeljs.io/docs/advanced/transformers/other/comprehensions/">Détails</a></footer>
           </section>
 
           <section id="decorators">
             <h2>Décorateurs</h2>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+            <pre><code class="js" data-trim data-noescape>
+class Meal {
+  <u>@readonly</u>
+  entree = 'Steak'
 
+  <u>@memoized('5 minutes')</u>
+  fullRun() {
+    // …
+  }
+}
             </code></pre>
-            <!--
-            Dérouler rapidement https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841
-            -->
-            <footer><a href="https://github.com/wycats/javascript-decorators#readme">Détails</a></footer>
+
+            <footer>
+              <a href="https://github.com/wycats/javascript-decorators#readme">Détails</a> •
+              <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Super article</a>
+            </footer>
           </section>
 
           <section id="proxies">
             <h2>Proxies</h2>
 
-            <pre><code class="js" data-trim data-noescape data-path=".js (ligne …)">
+            <pre><code class="js" data-trim data-noescape>
+function safeObj(obj) {
+  return new Proxy(obj, {
+    get(target, propKey, receiver) {
+      if (!(propKey in target)) {
+          throw new ReferenceError('Unknown property: ' + propKey);
+      }
+      return Reflect.get(target, propKey, receiver);
+    }
+  });
+}
 
+var o = safeObj({ first: 'Christopher', last: 'Colombus' });
+o.frist // => ReferenceError: Unknown property: frist
             </code></pre>
-            <!--
-            -> http://www.2ality.com/2014/12/es6-proxies.html#use_cases_for_proxies
-             (notamment 3.4 : Warning about unknown props // 3.5 : Negative array indices)
-            -->
-            <footer><a href="http://babeljs.io/docs/learn-es2015/#proxies">Détails</a></footer>
+
+            <footer>
+              <a href="http://babeljs.io/docs/learn-es2015/#proxies">Détails</a> •
+              <a href="http://www.2ality.com/2014/12/es6-proxies.html#use_cases_for_proxies">Plein de super cas d’utilisation</a>
+            </footer>
           </section>
         </section> <!-- #experiments -->
 
