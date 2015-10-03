@@ -700,3 +700,8 @@ b.right::after {
   flex-basis: 50%;
   text-align: center;
 }
+
+.reveal iframe[name^="tonic-embed-"] {
+  max-width: none;
+  max-height: none;
+}

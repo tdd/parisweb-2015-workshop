@@ -420,7 +420,23 @@ caches.match('/data.json')<u>.then</u>(function(response) {
           <section id="async-functions">
             <h2>Fonctions asynchrones</h2>
 
-            <pre><code id="async-fx-demo" class="js" data-trim data-noescape>
+            <script src="https://embed.tonicdev.com" data-element-id="async-fx-demo"></script>
+            <div id="async-fx-demo"><code data-trim>
+var Promise = require("bluebird");
+var R = require("ramda");
+
+async function forecastCities()
+{
+    var forecast = require("notebook")("tonic/forecast/1.0.0");
+    var promises = R.map(forecast.threeDay, arguments);
+
+    return R.zipObj(arguments, await Promise.map(promises, R.identity));
+}
+
+await forecastCities("New York", "San Francisco");
+            </code></div>
+
+            <pre style="display: none;"><code class="js" data-trim data-noescape>
 const Promise = require("bluebird");
 const R = require("ramda");
 
@@ -442,7 +458,8 @@ const R = require("ramda");
 
             <footer>
               <a href="https://github.com/tc39/ecmascript-asyncawait#readme">Détails</a> •
-              <a href="https://jakearchibald.com/2014/es7-async-functions/">Jake Archibald enfonce le clou</a>
+              <a href="https://jakearchibald.com/2014/es7-async-functions/">Jake Archibald enfonce le clou</a> •
+              <a href="http://rossboucher.com/await/">Belle présentation de Ross Boucher</a>
             </footer>
           </section>
         </section> <!-- #async -->
