@@ -224,7 +224,7 @@ arr1                // => ['one', 'two', 'three', 'four']
 var defaults = { first: 'John', last: 'Doe', age: 42 };
 var trainer  = { last: 'Smith', age: 35 };
 trainer      = { <u>...defaults</u>, <u>...trainer</u>, age: 36 }
-// => { first: 'Robert', last: 'Smith', age: 36 }
+// => { first: 'John', last: 'Smith', age: 36 }
             </code></pre>
 
             <pre><code class="js" data-trim data-noescape data-path="reducers/todos.js (lignes 12–16, reformatées)">
